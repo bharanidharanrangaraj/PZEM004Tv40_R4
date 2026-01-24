@@ -1,0 +1,43 @@
+#######################################
+# Syntax Coloring Map for PZEM004Tv30_R4
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+PZEM004Tv30_R4	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	KEYWORD2
+readAll	KEYWORD2
+getVoltage	KEYWORD2
+getCurrent	KEYWORD2
+getPower	KEYWORD2
+getEnergy	KEYWORD2
+getFrequency	KEYWORD2
+getPowerFactor	KEYWORD2
+getAlarm	KEYWORD2
+readVoltage	KEYWORD2
+readCurrent	KEYWORD2
+readPower	KEYWORD2
+readEnergy	KEYWORD2
+readFrequency	KEYWORD2
+readPowerFactor	KEYWORD2
+resetEnergy	KEYWORD2
+setAddress	KEYWORD2
+getLastError	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+PZEM_DEFAULT_ADDR	LITERAL1
+ERROR_NONE	LITERAL1
+ERROR_TIMEOUT	LITERAL1
+ERROR_CRC	LITERAL1
+ERROR_INVALID_RESPONSE	LITERAL1
+ERROR_NO_DATA	LITERAL1
