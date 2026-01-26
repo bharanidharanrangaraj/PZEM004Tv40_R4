@@ -1,0 +1,61 @@
+{
+    "name": "PZEM004Tv40_R4",
+    "version": "1.1.0",
+    "description": "Library for PZEM-004T V4.0 Energy Monitor. Supports reading voltage, current, power, energy, frequency, power factor, and alarm status using Modbus RTU protocol. Compatible with Arduino UNO R3, R4, Nano, Mega with built-in error handling and CRC verification.",
+    "keywords": [
+        "pzem",
+        "pzem-004t",
+        "energy",
+        "power",
+        "voltage",
+        "current",
+        "frequency",
+        "power-factor",
+        "modbus",
+        "energy-monitor",
+        "arduino-uno-r4",
+        "sensors"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/bharanidharanrangaraj/PZEM004Tv40_R4.git"
+    },
+    "authors": [
+        {
+            "name": "Bharani Dharan Rangaraj",
+            "email": "bharanidharanrangaraj@gmail.com",
+            "maintainer": true
+        }
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/bharanidharanrangaraj/PZEM004Tv40_R4",
+    "frameworks": "arduino",
+    "platforms": [
+        "atmelavr",
+        "renesas-ra"
+    ],
+    "headers": "PZEM004Tv40_R4.h",
+    "examples": [
+        {
+            "name": "Basic_Readings",
+            "base": "examples/Basic_Readings",
+            "files": [
+                "Basic_Readings.ino"
+            ]
+        },
+        {
+            "name": "Individual_Parameters",
+            "base": "examples/Individual_Parameters",
+            "files": [
+                "Individual_Parameters.ino"
+            ]
+        },
+        {
+            "name": "Basic_Reading_R4",
+            "base": "examples/Basic_Reading_R4",
+            "files": [
+                "Basic_Reading_R4.ino"
+            ]
+        }
+    ]
+}
