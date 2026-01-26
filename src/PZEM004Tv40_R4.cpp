@@ -53,6 +53,7 @@
 PZEM004Tv40_R4::PZEM004Tv40_R4(SoftwareSerial *port, uint8_t addr)
 {
   _serial = port;
+  _hwSerial = nullptr; // SoftwareSerial - user must call begin() on it before passing
   _addr = addr;
   _lastError = ERROR_NONE;
 
@@ -71,6 +72,7 @@ PZEM004Tv40_R4::PZEM004Tv40_R4(SoftwareSerial *port, uint8_t addr)
 PZEM004Tv40_R4::PZEM004Tv40_R4(HardwareSerial *port, uint8_t addr)
 {
   _serial = port;
+  _hwSerial = port; // Store HardwareSerial pointer for begin()
   _addr = addr;
   _lastError = ERROR_NONE;
 
@@ -86,7 +88,12 @@ PZEM004Tv40_R4::PZEM004Tv40_R4(HardwareSerial *port, uint8_t addr)
 
 void PZEM004Tv40_R4::begin()
 {
-  _serial->begin(9600);
+  // Only call begin() if we have a HardwareSerial pointer
+  // For SoftwareSerial, user must call begin() on it before passing to constructor
+  if (_hwSerial != nullptr)
+  {
+    _hwSerial->begin(9600);
+  }
   delay(100);
 }
 

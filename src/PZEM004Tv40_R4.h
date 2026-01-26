@@ -194,7 +194,8 @@ public:
   };
 
 private:
-  Stream *_serial; // Changed to Stream* for universal compatibility
+  Stream *_serial;          // Changed to Stream* for universal compatibility
+  HardwareSerial *_hwSerial; // Store HardwareSerial pointer if used (for begin())
   uint8_t _addr;
   uint8_t _lastError;
 
