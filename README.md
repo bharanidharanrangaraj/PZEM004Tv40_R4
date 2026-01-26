@@ -1,8 +1,9 @@
 # PZEM004Tv40_R4
 
 [![Arduino](https://img.shields.io/badge/Arduino-UNO%20R4-00979D?logo=arduino)](https://www.arduino.cc/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PlatformIO Registry](https://badges.registry.platformio.org/packages/bharanidharanrangaraj/library/PZEM004Tv40_R4.svg)](https://registry.platformio.org/libraries/bharanidharanrangaraj/PZEM004Tv40_R4)
 [![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/bharanidharanrangaraj/PZEM004Tv40_R4)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Arduino library for the **PZEM-004T V4.0 (100A)** Energy Monitor, compatible with **Arduino UNO R3, R4, Nano, Mega**, and other Arduino boards. This library enables easy reading of voltage, current, power, energy, frequency, power factor, and alarm status using the Modbus RTU protocol.
 
