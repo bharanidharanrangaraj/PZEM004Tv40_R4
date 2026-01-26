@@ -1,32 +1,36 @@
 /*
-  Basic Reading Example
+  Basic Reading Example for Arduino UNO R3/Nano
   Copyright (c) 2026 Bharani Dharan Rangaraj
   MIT License
   
-  Reads all parameters from PZEM-004T and displays on Serial Monitor
-  
   Hardware:
-  - Arduino UNO R4 (Minima or WiFi)
-  - PZEM-004T-100A
+  - Arduino UNO R3 / Nano / Mega
+  - PZEM-004T V4.0 (100A)
   
   Connections:
-  - PZEM TX -> Arduino Pin 0 (RX)
-  - PZEM RX -> Arduino Pin 1 (TX)
+  - PZEM TX -> Arduino Pin 2 (RX/SoftwareSerial)
+  - PZEM RX -> Arduino Pin 3 (TX/SoftwareSerial)
   - PZEM 5V -> Arduino 5V
   - PZEM GND -> Arduino GND
 */
 
+#include <SoftwareSerial.h>
 #include <PZEM004Tv40_R4.h>
 
-// Create PZEM object on Serial1
-PZEM004Tv40_R4 pzem(&Serial1);
+// Create SoftwareSerial for PZEM (RX=Pin2, TX=Pin3)
+SoftwareSerial pzemSerial(2, 3);
+
+// Create PZEM object on SoftwareSerial
+PZEM004Tv40_R4 pzem(&pzemSerial);
 
 void setup()
 {
   Serial.begin(115200);
+  pzemSerial.begin(9600);
   pzem.begin();
   
-  Serial.println("PZEM-004T-100A Energy Monitor");
+  Serial.println("PZEM-004T V4.0 Energy Monitor");
+  Serial.println("Arduino UNO R3/Nano");
   Serial.println("==============================");
   delay(1000);
 }
@@ -36,8 +40,6 @@ void loop()
   // Read all parameters
   if (pzem.readAll())
   {
-    Serial.println("------------------------");
-    
     Serial.print("Voltage:      ");
     Serial.print(pzem.getVoltage(), 1);
     Serial.println(" V");

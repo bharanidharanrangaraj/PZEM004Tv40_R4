@@ -2,9 +2,9 @@
 
 [![Arduino](https://img.shields.io/badge/Arduino-UNO%20R4-00979D?logo=arduino)](https://www.arduino.cc/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)](https://github.com/bharanidharanrangaraj/PZEM004Tv40_R4)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/bharanidharanrangaraj/PZEM004Tv40_R4)
 
-Arduino library for the **PZEM-004T V4.0 (100A)** Energy Monitor, specifically optimized for **Arduino UNO R4** (Minima and WiFi). This library enables easy reading of voltage, current, power, energy, frequency, power factor, and alarm status using the Modbus RTU protocol.
+Arduino library for the **PZEM-004T V4.0 (100A)** Energy Monitor, compatible with **Arduino UNO R3, R4, Nano, Mega**, and other Arduino boards. This library enables easy reading of voltage, current, power, energy, frequency, power factor, and alarm status using the Modbus RTU protocol.
 
 ## Features
 
@@ -14,7 +14,8 @@ Arduino library for the **PZEM-004T V4.0 (100A)** Energy Monitor, specifically o
 - **Energy Reset**: Reset accumulated energy counter
 - **Address Management**: Change device Modbus address for multi-device setups
 - **Built-in Error Handling**: CRC verification and comprehensive error codes
-- **Arduino UNO R4 Optimized**: Designed for Renesas RA4M1 architecture
+- **Universal Compatibility**: Works with Arduino UNO R3, R4, Nano, Mega, and other boards
+- **Flexible Serial Communication**: Supports both HardwareSerial (R4) and SoftwareSerial (R3/Nano)
 
 ## Hardware Specifications
 
@@ -59,6 +60,8 @@ lib_deps =
 
 ## Wiring
 
+### Arduino UNO R4 (Minima/WiFi)
+
 Connect the PZEM-004T to Arduino UNO R4:
 
 | PZEM-004T | Arduino UNO R4 |
@@ -70,7 +73,22 @@ Connect the PZEM-004T to Arduino UNO R4:
 
 > **Note**: The PZEM-004T uses **Serial1** on Arduino UNO R4, leaving the main USB serial (Serial) free for debugging.
 
+### Arduino UNO R3 / Nano / Mega
+
+Connect the PZEM-004T to Arduino UNO R3/Nano:
+
+| PZEM-004T | Arduino UNO R3/Nano |
+|-----------|--------------------|
+| TX | Pin 2 (RX / SoftwareSerial) |
+| RX | Pin 3 (TX / SoftwareSerial) |
+| 5V | 5V |
+| GND | GND |
+
+> **Note**: R3/Nano use **SoftwareSerial** for PZEM communication. You can change pins 2 and 3 to other digital pins if needed.
+
 ## Quick Start
+
+### Arduino UNO R4
 
 ```cpp
 #include <PZEM004Tv40_R4.h>
@@ -101,6 +119,47 @@ void loop() {
     Serial.print("Energy: ");
     Serial.print(pzem.getEnergy(), 3);
     Serial.println(" kWh");
+  } else {
+    Serial.print("Error: ");
+    Serial.println(pzem.getLastError());
+  }
+  
+  delay(1000);
+}
+```
+
+### Arduino UNO R3 / Nano
+
+```cpp
+#include <SoftwareSerial.h>
+#include <PZEM004Tv40_R4.h>
+
+// Create SoftwareSerial for PZEM (RX=Pin2, TX=Pin3)
+SoftwareSerial pzemSerial(2, 3);
+
+// Create PZEM object on SoftwareSerial
+PZEM004Tv40_R4 pzem(&pzemSerial);
+
+void setup() {
+  Serial.begin(115200);
+  pzemSerial.begin(9600);
+  pzem.begin();
+}
+
+void loop() {
+  // Read all parameters at once (recommended)
+  if (pzem.readAll()) {
+    Serial.print("Voltage: ");
+    Serial.print(pzem.getVoltage(), 1);
+    Serial.println(" V");
+    
+    Serial.print("Current: ");
+    Serial.print(pzem.getCurrent(), 3);
+    Serial.println(" A");
+    
+    Serial.print("Power: ");
+    Serial.print(pzem.getPower(), 1);
+    Serial.println(" W");
   } else {
     Serial.print("Error: ");
     Serial.println(pzem.getLastError());
@@ -329,12 +388,23 @@ PZEM004Tv40_R4 pzem3(&Serial1, 0x03);
 
 ## Compatibility
 
-- ✅ **Arduino UNO R4 Minima**
-- ✅ **Arduino UNO R4 WiFi**
-- ❌ Arduino UNO R3 (different serial configuration)
-- ❌ ESP32/ESP8266 (use different library)
+### Supported Boards
 
-**Architecture**: Renesas RA4M1 (renesas_uno)
+- ✅ **Arduino UNO R4 Minima** (HardwareSerial)
+- ✅ **Arduino UNO R4 WiFi** (HardwareSerial)
+- ✅ **Arduino UNO R3** (SoftwareSerial)
+- ✅ **Arduino Nano** (SoftwareSerial)
+- ✅ **Arduino Mega** (HardwareSerial)
+- ✅ **Other Arduino boards** with HardwareSerial or SoftwareSerial support
+
+### Not Supported
+
+- ❌ ESP32/ESP8266 (Currently under development, support for these boards will be available in upcoming release)
+
+### Architectures
+
+- **AVR** (avr) - UNO R3, Nano, Mega (uses SoftwareSerial)
+- **Renesas RA4M1** (renesas_uno) - UNO R4 (uses HardwareSerial)
 
 ## License
 
@@ -358,5 +428,5 @@ For issues and feature requests, please use the [GitHub Issues](https://github.c
 
 ---
 
-**Version**: 1.0.1  
+**Version**: 1.1.0  
 **Last Updated**: January 2026
