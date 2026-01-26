@@ -1,5 +1,7 @@
 /*
-  Basic Reading Example for PZEM004Tv40_R4
+  Basic Reading Example
+  Copyright (c) 2026 Bharani Dharan Rangaraj
+  MIT License
   
   Reads all parameters from PZEM-004T and displays on Serial Monitor
   

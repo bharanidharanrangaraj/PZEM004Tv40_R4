@@ -1,21 +1,86 @@
-/*
-  PZEM004Tv40_R4.h - Library for PZEM-004T V4.0 Energy Monitor
-  Compatible with Arduino UNO R4 (Minima/WiFi)
-  
-  Created by [Your Name], 2024
-  Released under MIT License
-  
-  Hardware Support: PZEM-004T V4.0 (100A version)
-  
-  Features:
-  - Voltage measurement (80-260V AC)
-  - Current measurement (0-100A)
-  - Power measurement
-  - Energy measurement
-  - Frequency measurement
-  - Power factor measurement
-  - Alarm status
-*/
+/*!
+ * @file PZEM004Tv40_R4.h
+ * @brief Header file for PZEM-004T V4.0 Energy Monitor Library
+ * 
+ * @author Bharani Dharan Rangaraj <bharanidharanrangaraj@gmail.com>
+ * @date 2026-01-26
+ * @version 1.0.1
+ * 
+ * @copyright Copyright (c) 2026 Bharani Dharan Rangaraj
+ * 
+ * @license MIT License
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ * 
+ * @details
+ * This library provides an interface to communicate with the PZEM-004T V4.0 
+ * energy monitor module using the Modbus RTU protocol. It is specifically 
+ * optimized for Arduino UNO R4 (Minima/WiFi) boards.
+ * 
+ * Hardware Support:
+ * - PZEM-004T V4.0 (100A version)
+ * - Compatible with Arduino UNO R4 Minima and WiFi
+ * 
+ * Measurements Supported:
+ * - Voltage: 80-260V AC (±0.5% accuracy)
+ * - Current: 0-100A (±0.5% accuracy)
+ * - Active Power: 0-23kW (±0.5% accuracy)
+ * - Energy: 0-9999.99kWh (±0.5% accuracy)
+ * - Frequency: 45-65Hz (±0.1Hz accuracy)
+ * - Power Factor: 0.00-1.00 (±1% accuracy)
+ * - Alarm Status: Over-power alarm
+ * 
+ * Features:
+ * - Efficient batch reading with readAll() method
+ * - Individual parameter reading methods
+ * - Energy counter reset functionality
+ * - Dynamic address configuration
+ * - Comprehensive error handling with detailed error codes
+ * - CRC16 verification for data integrity
+ * - Modbus RTU protocol implementation
+ * 
+ * @note This library uses HardwareSerial communication at 9600 baud rate.
+ * @note Default Modbus address is 0x01 (can be changed using setAddress())
+ * 
+ * @see https://github.com/bharanidharanrangaraj/PZEM004Tv40_R4
+ * 
+ * @example
+ * @code
+ * #include <PZEM004Tv40_R4.h>
+ * 
+ * PZEM004Tv40_R4 pzem(&Serial1);
+ * 
+ * void setup() {
+ *   Serial.begin(115200);
+ *   pzem.begin();
+ * }
+ * 
+ * void loop() {
+ *   if (pzem.readAll()) {
+ *     Serial.print("Voltage: ");
+ *     Serial.print(pzem.getVoltage());
+ *     Serial.println(" V");
+ *   }
+ *   delay(1000);
+ * }
+ * @endcode
+ */
 
 #ifndef PZEM004TV40_R4_H
 #define PZEM004TV40_R4_H

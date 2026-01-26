@@ -1,5 +1,7 @@
 /*
-  Individual Parameters Reading Example for PZEM004Tv40_R4
+  Individual Parameters Example
+  Copyright (c) 2026 Bharani Dharan Rangaraj
+  MIT License
   
   This sketch demonstrates two methods of reading PZEM data:
   1. readAll() - Efficient method that reads all parameters at once (RECOMMENDED)
