@@ -2,7 +2,7 @@
 
 [![Arduino](https://img.shields.io/badge/Arduino-UNO%20R4-00979D?logo=arduino)](https://www.arduino.cc/)
 [![PlatformIO Registry](https://badges.registry.platformio.org/packages/bharanidharanrangaraj/library/PZEM004Tv40_R4.svg)](https://registry.platformio.org/libraries/bharanidharanrangaraj/PZEM004Tv40_R4)
-[![Version](https://img.shields.io/badge/version-1.1.0-blue.svg)](https://github.com/bharanidharanrangaraj/PZEM004Tv40_R4)
+[![Version](https://img.shields.io/badge/version-1.1.1-blue.svg)](https://github.com/bharanidharanrangaraj/PZEM004Tv40_R4)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Arduino library for the **PZEM-004T V4.0 (100A)** Energy Monitor, compatible with **Arduino UNO R3, R4, Nano, Mega**, and other Arduino boards. This library enables easy reading of voltage, current, power, energy, frequency, power factor, and alarm status using the Modbus RTU protocol.
@@ -303,38 +303,30 @@ Returns the last error code.
 
 ## Examples
 
-The library includes four comprehensive examples:
+The library includes three examples:
 
-### 1. Basic_Reading
+### 1. Basic_Reading_R4
 
-Simple example demonstrating basic parameter reading and display.
+Simple example for Arduino UNO R4 demonstrating all parameter reading via HardwareSerial (Serial1).
 
 ```bash
-File → Examples → PZEM004Tv40_R4 → Basic_Reading
+File → Examples → PZEM004Tv40_R4 → Basic_Reading_R4
 ```
 
-### 2. Individual_Parameters
+### 2. Basic_Readings
 
-Compares efficient `readAll()` method vs individual parameter reads. Shows execution time comparison.
+Same basic reading example for Arduino UNO R3, Nano, and Mega using SoftwareSerial.
+
+```bash
+File → Examples → PZEM004Tv40_R4 → Basic_Readings
+```
+
+### 3. Individual_Parameters
+
+Compares efficient `readAll()` method vs individual parameter reads with execution time comparison. Auto-detects board and uses the appropriate serial interface.
 
 ```bash
 File → Examples → PZEM004Tv40_R4 → Individual_Parameters
-```
-
-### 3. Reset_Energy
-
-Demonstrates automatic energy counter reset at specified intervals (daily, weekly, etc.) with cost calculation.
-
-```bash
-File → Examples → PZEM004Tv40_R4 → Reset_Energy
-```
-
-### 4. Change_Address
-
-Utility for changing the device Modbus address with verification.
-
-```bash
-File → Examples → PZEM004Tv40_R4 → Change_Address
 ```
 
 ## Best Practices
@@ -429,5 +421,5 @@ For issues and feature requests, please use the [GitHub Issues](https://github.c
 
 ---
 
-**Version**: 1.1.0  
-**Last Updated**: January 2026
+**Version**: 1.1.1  
+**Last Updated**: June 2026
