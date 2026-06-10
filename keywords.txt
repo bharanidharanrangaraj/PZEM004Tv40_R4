@@ -6,7 +6,7 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-PZEM004Tv30_R4	KEYWORD1
+PZEM004Tv40_R4	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)

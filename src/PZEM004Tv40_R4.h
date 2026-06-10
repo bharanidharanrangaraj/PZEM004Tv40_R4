@@ -4,7 +4,7 @@
  *
  * @author Bharani Dharan Rangaraj <bharanidharanrangaraj@gmail.com>
  * @date 2026-01-26
- * @version 1.1.0
+ * @version 1.1.1
  *
  * @copyright Copyright (c) 2026 Bharani Dharan Rangaraj
  *

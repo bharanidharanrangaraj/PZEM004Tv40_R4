@@ -4,7 +4,7 @@
  *
  * @author Bharani Dharan Rangaraj <bharanidharanrangaraj@gmail.com>
  * @date 2026-01-26
- * @version 1.1.0
+ * @version 1.1.1
  *
  * @copyright Copyright (c) 2026 Bharani Dharan Rangaraj
  *
@@ -289,10 +289,8 @@ bool PZEM004Tv40_R4::resetEnergy()
   // Send command
   _serial->write(resetCmd, 6);
 
-// For HardwareSerial, use flush()
-#if !defined(__AVR__)
-  _serial->flush();
-#endif
+  if (_hwSerial != nullptr)
+    _hwSerial->flush();
 
   // Wait for PZEM to process
   delay(100);
@@ -357,17 +355,31 @@ bool PZEM004Tv40_R4::setAddress(uint8_t newAddr)
   _serial->write(cmd, 6);
   delay(100);
 
-  // Check for response
-  uint8_t buffer[5];
-  if (!receiveResponse(buffer, 5))
+  // Read response directly — cannot use receiveResponse() which expects function code 0x04
+  uint8_t buffer[6];
+  unsigned long startTime = millis();
+  uint16_t bytesRead = 0;
+
+  while ((millis() - startTime) < PZEM_TIMEOUT)
+  {
+    if (_serial->available() && bytesRead < 6)
+      buffer[bytesRead++] = _serial->read();
+  }
+
+  if (bytesRead < 4)
+  {
+    _lastError = ERROR_TIMEOUT;
     return false;
+  }
 
   if (buffer[0] == newAddr && buffer[1] == 0x41)
   {
     _addr = newAddr;
+    _lastError = ERROR_NONE;
     return true;
   }
 
+  _lastError = ERROR_INVALID_RESPONSE;
   return false;
 }
 

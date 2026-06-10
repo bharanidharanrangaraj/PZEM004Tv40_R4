@@ -1,6 +1,6 @@
 {
     "name": "PZEM004Tv40_R4",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Library for PZEM-004T V4.0 Energy Monitor. Supports reading voltage, current, power, energy, frequency, power factor, and alarm status using Modbus RTU protocol. Compatible with Arduino UNO R3, R4, Nano, Mega with built-in error handling and CRC verification.",
     "keywords": [
         "pzem",
